@@ -1,0 +1,23 @@
+##########################################################################
+# Copyright (c) 2011 UChicago Argonne LLC, as Operator of Argonne
+#     National Laboratory.
+# EPICS BASE is distributed subject to a Software License Agreement found
+# in the file LICENSE that is included with this distribution.
+##########################################################################
+
+# This is a Makefile fragment, see src/ioc/Makefile.
+
+imSoftIoc.dbd$(DEP): $(COMMON_DIR)/stdRecords.dbd
+imSoftIoc.dbd$(DEP): $(COMMON_DIR)/filters.dbd
+imSoftIoc.dbd$(DEP): $(COMMON_DIR)/links.dbd
+$(COMMON_DIR)/imSoftIoc.dbd: $(COMMON_DIR)/stdRecords.dbd
+$(COMMON_DIR)/imSoftIoc.dbd: $(COMMON_DIR)/filters.dbd
+$(COMMON_DIR)/imSoftIoc.dbd: $(COMMON_DIR)/links.dbd
+$(COMMON_DIR)/imSoftIoc.dbd: $(STDDIR)/imSoftIoc/Makefile
+
+imSoftMain$(DEP): epicsInstallDir.h
+
+epicsInstallDir.h: $(TOP)/configure/CONFIG_SITE*
+	$(ECHO) "FINAL_LOCATION=$(FINAL_LOCATION)"
+	$(PERL) $(STDDIR)/imSoftIoc/makeInstallDir.pl "$(FINAL_LOCATION)" > $@
+

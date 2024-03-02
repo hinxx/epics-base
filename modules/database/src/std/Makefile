@@ -29,8 +29,10 @@ include $(STDDIR)/dev/Makefile
 include $(STDDIR)/filters/Makefile
 include $(STDDIR)/link/Makefile
 include $(STDDIR)/softIoc/Makefile
+include $(STDDIR)/imSoftIoc/Makefile
 
 include $(TOP)/configure/RULES
 
 include $(STDDIR)/rec/RULES
 include $(STDDIR)/softIoc/RULES
+include $(STDDIR)/imSoftIoc/RULES
